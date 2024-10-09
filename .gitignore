@@ -10,6 +10,8 @@ lerna-debug.log*
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
+.DS_Store
+
 # Runtime data
 pids
 *.pid
@@ -41,7 +43,7 @@ build/Release
 # Dependency directories
 node_modules/
 ./Base server/node_modules/
-./Log Server/node_modules/
+./Log server/node_modules/
 ./Broker server/node_modules/
 
 jspm_packages/
@@ -80,7 +82,7 @@ web_modules/
 # dotenv environment variable files
 .env
 ./Base server/.env
-./Log Server/.env
+./Log server/.env
 ./Broker server/.env
 
 
@@ -89,8 +91,8 @@ web_modules/
 .parcel-cache
 ./Base server/package-lock.json
 ./Base server/yarn.lock
-./Log Server/package-lock.json
-./Log Server/yarn.lock
+./Log server/package-lock.json
+./Log server/yarn.lock
 ./Broker server/package-lock.json
 ./Broker server/yarn.lock
 
@@ -105,7 +107,7 @@ dist
 # Gatsby files
 .cache/
 ./Base server/.cache/
-./Log Server/.cache/
+./Log server/.cache/
 ./Broker server/.cache/
 
 # Comment in the public line in if your project uses Gatsby and not Next.js
