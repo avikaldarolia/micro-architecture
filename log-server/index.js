@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectRabbitMQ } from "./rabbitmq.js";
-import { query } from "../Base server/db.js";
+import { query } from "../base-server/db.js";
 
 dotenv.config();
 
