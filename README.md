@@ -31,9 +31,15 @@ Navigate to the base-server folder and install the required dependencies:\
 `npm install`
 
 2. **Environment Variables**:\
-Create a .env file in the base-server folder with the following content:\
+Create a ```.env``` file in the ```base-server``` folder with the following content:\
 `RABBITMQ_URL=amqp://localhost`\
-`PORT=8000`
+`PORT=8000`\
+`POSTGRES_USER=postgres`\
+`POSTGRES_PASSWORD=yourpassword`\
+`POSTGRES_DB=logdb`\
+`POSTGRES_HOST=localhost`
+
+If you're not using PostgreSQL, you can omit the PostgreSQL environment variables.
 
 3. **Running the Base Server**:\
 Run the Base Server:
@@ -46,9 +52,36 @@ Eg - ```curl -X POST http://localhost:3000/request -H "Content-Type: application
 
 Alternatively, you can use Postman or any API client to send the request.
 
+## Log Server Setup (Consumer)
+The Log Server listens for messages from RabbitMQ and processes them. It can also log the data to a PostgreSQL database if configured.
+
+1. **Install Dependencies**:\
+Navigate to the log-server folder and install the required dependencies:\
+`cd log-server`\
+`npm install`
+
+2. **Environment Variables**:\
+Create a ```.env``` file in the ```log-server``` folder with the following content:\
+`RABBITMQ_URL=amqp://localhost`\
+`PORT=8001`\
+`POSTGRES_USER=postgres`\
+`POSTGRES_PASSWORD=yourpassword`\
+`POSTGRES_DB=logdb`\
+`POSTGRES_HOST=localhost`
+
+If you're not using PostgreSQL, you can omit the PostgreSQL environment variables.
+
+3. **Running the Log Server**:\
+Run the Log Server:
+`npm start`\
+The server will be running at http://localhost:8001.
+
+4. **Check the Log Server Output**:\
+When a request is sent to the ```Base Server```, the ```Log Server``` will receive the message from RabbitMQ and log the data to the console. If PostgreSQL is configured, the message will also be stored in the database.
+
 
 ## Project Flow
-1. ```Base Server``` receives an HTTP POST request.
+1. ```Base Server``` receives request.
 2. The ```Base Server``` sends the request data to ```RabbitMQ```.
 3. ```Log Server``` consumes the message from ```RabbitMQ``` and logs it to the console or ```PostgreSQL```.
 
