@@ -2,12 +2,21 @@ import { query } from "../db.js";
 import { sendTrace } from "./trace.js";
 import { v4 as uuidv4 } from "uuid";
 
+/**
+ * Fetches the user
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
 export const getUsers = async (req, res) => {
 	try {
 		const req_id = uuidv4();
 		await sendTrace(req_id, JSON.stringify(req.body));
 
+		// *** OPTIONAL ***
 		const result = await query("SELECT * FROM users");
+
+		// Store resultant of the process as well.
 		await sendTrace(req_id, req.body, result.rows);
 
 		return res.json(result.rows);
@@ -17,7 +26,14 @@ export const getUsers = async (req, res) => {
 	}
 };
 
-export const getUserInformation = async (req, res, next) => {
+/**
+ * Stores the user Information
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns
+ */
+export const storeUserInformation = async (req, res, next) => {
 	const { username, codename } = req.body;
 	try {
 		const req_id = uuidv4();

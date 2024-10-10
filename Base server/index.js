@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import { getUserInformation, getUsers } from "./controller/user.js";
+import { getUsers, storeUserInformation } from "./controller/user.js";
 import { connectRabbitMQ } from "./rabbitmq.js";
 
 dotenv.config();
@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/user", getUsers);
-app.post("/user", getUserInformation);
+app.post("/user", storeUserInformation);
 
 app.get("/", (res) => res.send("Yo!"));
 
